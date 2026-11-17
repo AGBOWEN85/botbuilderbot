@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic, Volume2, Waveform, Activity } from 'lucide-react';
+import { Mic, Volume2, AudioWaveform, Activity } from 'lucide-react';
 
 const audioModels = [
   {
@@ -24,7 +24,7 @@ const audioModels = [
     model: 'SincNet',
     accuracy: 92,
     status: 'active',
-    icon: Waveform
+    icon: AudioWaveform
   }
 ];
 
