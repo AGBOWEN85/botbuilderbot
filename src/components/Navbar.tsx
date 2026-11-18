@@ -1,7 +1,20 @@
 import React from 'react';
 import { Bot, Menu } from 'lucide-react';
 
-export default function Navbar() {
+interface NavbarProps {
+  onNavigate?: (tab: string) => void;
+}
+
+export default function Navbar({ onNavigate }: NavbarProps) {
+  // Tab ids match TabNavigation/App view-switching. Documentation has no
+  // view in the app, so it keeps no handler (unchanged behavior).
+  const items = [
+    { label: 'Dashboard', tab: 'dashboard' },
+    { label: 'Create Bot', tab: 'create' },
+    { label: 'Documentation', tab: null },
+    { label: 'Settings', tab: 'settings' },
+  ];
+
   return (
     <nav className="bg-gray-800 border-b border-gray-700">
       <div className="container mx-auto px-4">
@@ -12,12 +25,13 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center gap-6">
-            {['Dashboard', 'Create Bot', 'Documentation', 'Settings'].map((item) => (
+            {items.map(({ label, tab }) => (
               <button
-                key={item}
+                key={label}
+                onClick={tab && onNavigate ? () => onNavigate(tab) : undefined}
                 className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                {item}
+                {label}
               </button>
             ))}
           </div>

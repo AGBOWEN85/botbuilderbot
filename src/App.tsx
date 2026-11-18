@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BotBuilder from './components/BotBuilder';
+import BotCreationPanel from './components/BotCreationPanel';
 import StatusDashboard from './components/StatusDashboard';
 import Navbar from './components/Navbar';
 import TabNavigation from './components/TabNavigation';
@@ -12,6 +13,8 @@ function App() {
     switch (activeTab) {
       case 'builder':
         return <BotBuilder />;
+      case 'create':
+        return <BotCreationPanel />;
       case 'status':
         return <StatusDashboard />;
       default:
@@ -21,7 +24,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      <Navbar />
+      <Navbar onNavigate={setActiveTab} />
       
       <main className="container mx-auto px-4 py-8">
         <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
